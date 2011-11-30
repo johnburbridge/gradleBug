@@ -1,0 +1,79 @@
+/**
+ * Condensed build.gradle to try and reproduce the cobertura cache lock issue
+ */
+import org.gradle.api.internal.GradleInternal
+import org.gradle.api.internal.project.ProjectInternal
+
+buildscript {
+    repositories {
+        mavenRepo url: repositoryUrl;
+    }
+    dependencies {
+        classpath module("gradle_cobertura:gradle_cobertura:1.0-rc4") {
+            dependency "net.sourceforge.cobertura:cobertura:1.9.4.1";
+            dependency "org.codehaus.groovy:groovy:1.7.3";
+            dependency "junit:junit:3.8.2";
+            dependency "org.testng:testng:5.8";
+        }
+    }
+}
+
+// standard plug-ins
+apply plugin: 'java';
+apply plugin: 'eclipse';
+apply plugin: 'idea';
+apply plugin: 'maven';
+apply plugin: 'project-report';
+apply plugin: com.orbitz.gradle.cobertura.CoberturaPlugin;
+
+sourceCompatibility = 1.6;
+targetCompatibility = 1.6;
+
+configurations {
+    axisGenAntTask
+    compile { extendsFrom axisGenAntTask }
+}
+
+dependencies {
+    compile 'org.springframework:spring-core:3.0.5.RELEASE';
+    compile 'org.springframework:spring-beans:3.0.5.RELEASE';
+    compile 'org.springframework:spring-context:3.0.5.RELEASE';
+    compile 'org.testng:testng:6.1.1';
+    compile 'org.apache.httpcomponents:httpclient:4.1.1';
+    compile 'org.apache.httpcomponents:httpcore:4.1.1';
+    compile 'org.apache.velocity:velocity:1.7';
+    
+    /*
+     *  we're using axis 1.4 (and its dependencies) to generate the client stubs from 
+     *  the signup wsdl -- these are grouped as a module only so that axis's transitive
+     *   dependencies aren't eventually disconnected
+     */
+    axisGenAntTask module('org.apache.axis:axis:1.4') {
+        dependency 'javax.xml:jaxrpc-api:1.1';
+        dependency 'axis:axis-wsdl4j:1.5.1';
+        dependency 'commons-discovery:commons-discovery:0.2';
+        dependency 'commons-codec:commons-codec:1.3';
+        dependency 'javax.mail:mail:1.3.1';
+    }
+    
+    testCompile 'org.springframework:spring-test:3.0.5.RELEASE';
+    testCompile 'org.mockito:mockito-all:1.8.2';
+    testCompile 'junit:junit:4.7';
+}
+
+repositories {
+    mavenRepo url: repositoryUrl;
+}
+
+/**
+* Iterate over all sourceSets and create empty directories for the project following the gradle conventions
+*/
+task init << {
+    description = "creates all of the important directories in the project";
+
+    sourceSets.all*.java.srcDirs*.each { it.mkdirs() }
+    sourceSets.all*.resources.srcDirs*.each { it.mkdirs() }
+
+    println "Project $project.name initialized.";
+}
+
