@@ -1,0 +1,19 @@
+/**
+ * the child project
+ **/
+
+//def testCase = hasProperty('testCase') ? testCase : 'not set';
+
+//configurations {
+//    axisGenAntTask
+//    compile { extendsFrom axisGenAntTask }
+//}
+
+dependencies {
+	compile project(":shared");
+}
+
+cobertura << {
+    coverageExcludes = ['.*\\.stub\\..*'];
+}
+

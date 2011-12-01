@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import test.WaitingTask;
 
-public class WaitingTaskTest {
+public class WaitingTaskTest2 {
 
 	@Test
 	public void defaultTest() {
@@ -26,12 +26,7 @@ public class WaitingTaskTest {
 	
 	@Test
 	public void mediumTest() {
-		test(3);
-	}
-	
-	@Test
-	public void longTest() {
-		test(5);
+		test(2);
 	}
 	
 	@Test

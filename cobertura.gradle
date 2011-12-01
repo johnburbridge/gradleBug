@@ -1,0 +1,20 @@
+/**
+ * the cobertura plug-in
+ */
+import org.gradle.api.internal.GradleInternal
+import org.gradle.api.internal.project.ProjectInternal
+
+buildscript {
+	repositories {
+		mavenRepo url: repositoryUrl;
+	}
+	dependencies {
+		classpath module("gradle_cobertura:gradle_cobertura:1.0-rc4") {
+			dependency "net.sourceforge.cobertura:cobertura:1.9.4.1";
+			dependency "org.codehaus.groovy:groovy:1.7.3";
+			dependency "junit:junit:3.8.2";
+			dependency "org.testng:testng:5.8";
+		}
+	}
+}
+apply plugin: com.orbitz.gradle.cobertura.CoberturaPlugin;
