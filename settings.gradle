@@ -1,1 +1,1 @@
-include ":child", ":shared";
+include ":child";

@@ -8,8 +8,6 @@ import java.util.concurrent.Executors;
 
 import org.junit.Test;
 
-import test.WaitingTask;
-
 public class WaitingTaskTest3 {
 
 	@Test
