@@ -1,4 +1,4 @@
-package test;
+package child.test;
 
 
 import static org.junit.Assert.*;
@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import test.WaitingTask;
 
-public class WaitingTaskTest2 {
+public class WaitingTaskTest4 {
 
 	@Test
 	public void defaultTest() {

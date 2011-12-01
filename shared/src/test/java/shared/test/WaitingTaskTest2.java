@@ -1,4 +1,4 @@
-package test;
+package shared.test;
 
 
 import static org.junit.Assert.*;

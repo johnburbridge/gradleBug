@@ -1,4 +1,4 @@
-package test;
+package shared.test;
 
 
 import static org.junit.Assert.*;
@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import test.WaitingTask;
 
-public class WaitingTaskTest {
+public class WaitingTaskTest4 {
 
 	@Test
 	public void defaultTest() {
@@ -28,7 +28,6 @@ public class WaitingTaskTest {
 	public void mediumTest() {
 		test(2);
 	}
-	
 	
 	@Test
 	public void interruptTest() {
