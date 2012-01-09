@@ -1,0 +1,4 @@
+Condensed build.gradle that demonstrates the cobertura / cache-lock issue with Gradle 1.0-m6. 
+
+Once this bug is resolved by gradle we should be able to update the version being used by this project and verify that it builds successfully.
+
