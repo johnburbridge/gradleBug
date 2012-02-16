@@ -6,7 +6,8 @@ import org.gradle.api.internal.project.ProjectInternal
 
 buildscript {
 	repositories {
-		mavenRepo url: repositoryUrl;
+                // mavenCentral();
+		mavenRepo urls: repositoryUrl;
 	}
 	dependencies {
 		classpath module("gradle_cobertura:gradle_cobertura:1.0-rc4") {
